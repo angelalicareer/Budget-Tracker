@@ -37,7 +37,7 @@ router.put('/:id', (req, res) => {
   const {name, category, amount, description, period, starDate, endDate} = req.body
 
   Transaction
-    .update(name, category, amount, description, period, starDate, endDate)
+    .update(req.params.id, name, category, amount, description, period, starDate, endDate)
 
 })
 

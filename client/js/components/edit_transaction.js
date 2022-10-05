@@ -1,21 +1,21 @@
-function renderSignUp() {
+function renderEditTransaction() {
   document.querySelector('#page').innerHTML = `
   <main>
-  <form onSubmit="createUser(event)">
+  <form onSubmit="editTransaction(event)">
     <h2>
-      Sign Up
+      Edit Transaction
     </h2>
     <section>
-      <label for="">Username: </label>
-      <input type="text" name="username">
+      <label for="">Name: </label>
+      <input type="text" name="name">
     </section>
     <section>
-      <label for="">Email: </label>
+      <label for="">Amount: </label>
       <input type="text" name="email">
     </section>
     <section>
-      <label for="">Password: </label>
-      <input type="password" name="password">
+      <label for="">Description: </label>
+      <input type="text" name="description">
     </section>
     <button>Sign Up</button>
     </form>
@@ -23,19 +23,19 @@ function renderSignUp() {
   `
 }
 
-function createUser(event){
+function editTransaction(event) {
   event.preventDefault()
   const form = event.target
   const data = Object.fromEntries(new FormData(form))
 
-  fetch('/api/users', {
-    method: 'POST',
+  fetch(`/api/transactions/${data.id}`, {
+    method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data)
   })
     .then(res => res.json())
     .then(userName => {
       state.loggedInUserName = userName
-      renderList()
+      renderTransactionHistory()
     })
 }

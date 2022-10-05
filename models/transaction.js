@@ -1,30 +1,30 @@
 const db = require('../db/db')
 
 const Transaction = {
-  findAll: () => {
-    const sql = `SELECT * FROM transactions ORDER BY id`
+  findAll: (userId) => {
+    const sql = `SELECT * FROM transactions WHERE user_id = $1 ORDER BY id`
     return db
-            .query(sql)
+            .query(sql, [userId])
             .then(dbRes => dbRes.rows)
   },
 
-  addTransaction: (user_id, start_date, end_data, period, amount, name, description, category) => {
+  addTransaction: (userId, startDate, endDate, period, amount, name, description, category) => {
     const sql = `INSERT INTO transactions (user_id, start_date, end_data, period, amount, name, description, category)
                  VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
                  RETURNING *`
 
     return db
-            .query(sql, [user_id, start_date, end_data, period, amount, name, description, category])
+            .query(sql, [userId, startDate, endDate, period, amount, name, description, category])
             .then(dbRes => dbRes.rows[0])
   },
 
-  updateTransaction: (id, user_id, start_date, end_data, period, amount, name, description, category) => {
-    const sql = `UPDATE transactions SET user_id=$1, start_date=$2, end_data=$3, period=$4, amount=$5, name=$6, description=$7, category=$8
-                 WHERE id = $9
+  updateTransaction: (id, startDate, endDate, period, amount, name, description, category) => {
+    const sql = `UPDATE transactions SET start_date=$1, end_data=$2, period=$3, amount=$4, name=$5, description=$6, category=$7
+                 WHERE id=$8
                  RETURNING *`
 
     return db
-            .query(sql, [user_id, start_date, end_data, period, amount, name, description, category, id])
+            .query(sql, [startDate, endDate, period, amount, name, description, category, id])
             .then(dbRes => dbRes.rows[0])
   },
 
