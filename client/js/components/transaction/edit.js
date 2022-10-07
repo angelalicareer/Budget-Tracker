@@ -50,18 +50,26 @@ function updateTransaction(event) {
     .then(res => res.json())
     .then(res => {
       if (res.error) {
-        renderError(res.error, '.edit_add')
+        renderError(res.error)
       } else {
         state.userTransactions = state.userTransactions
-          .map(transaction => {
-            // console.log(`${transaction.id} vs ${res.id}`)
-            if (transaction.id === res.id) {
-              return res
-            } else {
-              return transaction
-            }
-          })
-        renderTransactionManager()
+        .map(transaction => {
+          // console.log(`${transaction.id} vs ${updatedTransaction.id}`)
+          if (transaction.id === res.id) {
+            return res
+          } else {
+            return transaction
+          }
+        })
       }
+      renderTransactionManager()
     })
+}
+
+function renderError(errorMessage) {
+  const page = document.querySelector('#page')
+  page.innerHTML = `
+    <div class="alert alert-danger" role="alert">
+      ${errorMessage}
+    </div>` + page.innerHTML
 }

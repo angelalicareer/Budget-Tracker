@@ -71,11 +71,18 @@ function createTransaction(event) {
     .then(res => res.json())
     .then(res => {
       if (res.error) {
-        renderError(res.error, '.create-transaction')
+        renderError(res.error)
       } else {
         state.userTransactions.push(res)
-        // now that the data has been added, reload the manager page back in.
-        renderTransactionManager()
       }
+      renderTransactionManager()
     })
+}
+
+function renderError(errorMessage) {
+  const page = document.querySelector('#page')
+  page.innerHTML = `
+    <div class="alert alert-danger" role="alert">
+      ${errorMessage}
+    </div>` + page.innerHTML
 }

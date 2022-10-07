@@ -49,10 +49,17 @@ function createUser(event){
     .then(res => res.json())
     .then(res => {
       if (res.error) {
-        renderSignUp()
-        renderError(res.error, '.sign-up-form')
+        renderError(res.error)
       } else {
         renderLogin()
       }
     })
+}
+
+function renderError(errorMessage) {
+  const page = document.querySelector('#page')
+  page.innerHTML = `
+    <div class="alert alert-danger" role="alert">
+      ${errorMessage}
+    </div>` + page.innerHTML
 }
