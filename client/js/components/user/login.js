@@ -45,8 +45,13 @@ function login(event) {
           body: data
         })
           .then(res => res.json())
-          .then(transactions => {
-            state.userTransactions = transactions
+          .then(res => {
+            if (res.error) {
+              renderError(res.error)
+            } else {
+              state.userTransactions = res
+            }
+
             renderNav()
             renderMobileNavMenu()
             renderTransactionOverview()
@@ -58,6 +63,8 @@ function login(event) {
 
 function renderError(errorMessage) {
   const page = document.querySelector('#page')
-  page.innerHTML = 
-    `<h2 style='color: red; font-size: 15px'>${errorMessage}</h2>` + page.innerHTML
+  page.innerHTML = `
+    <div class="alert alert-danger" role="alert">
+      ${errorMessage}
+    </div>` + page.innerHTML
 }

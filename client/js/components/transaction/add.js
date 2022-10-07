@@ -42,8 +42,20 @@ function createTransaction(event) {
     body: JSON.stringify(data)
   })
     .then(res => res.json())
-    .then(transaction => {
-      state.userTransactions.push(transaction)
+    .then(res => {
+      if (res.error) {
+        renderError(res.error)
+      } else {
+        state.userTransactions.push(res)
+      }
       renderTransactionManager()
     })
+}
+
+function renderError(errorMessage) {
+  const page = document.querySelector('#page')
+  page.innerHTML = `
+    <div class="alert alert-danger" role="alert">
+      ${errorMessage}
+    </div>` + page.innerHTML
 }

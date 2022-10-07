@@ -30,7 +30,19 @@ function createUser(event){
     body: JSON.stringify(data)
   })
     .then(res => res.json())
-    .then(userName => {
-      renderLogin()
+    .then(res => {
+      if (res.error) {
+        renderError(res.error)
+      } else {
+        renderLogin()
+      }
     })
+}
+
+function renderError(errorMessage) {
+  const page = document.querySelector('#page')
+  page.innerHTML = `
+    <div class="alert alert-danger" role="alert">
+      ${errorMessage}
+    </div>` + page.innerHTML
 }
