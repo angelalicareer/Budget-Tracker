@@ -1,3 +1,10 @@
+let metaTagsURL5 = document.getElementsByClassName('add-url-meta-tags')
+for (let tag = 0; tag < metaTagsURL5.length; tag++) {
+  if (!metaTagsURL5[tag].content.includes(document.URL)) {
+    metaTagsURL5[tag].content = document.URL + metaTagsURL5[tag].content
+  }  
+}
+
 const state = {
   userTransactions: [],
   loggedInUserEmail: null,
