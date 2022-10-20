@@ -1,4 +1,4 @@
-function renderTransactionAdd() {
+function renderTransactionAdd(transactionType) {
   document.querySelector('#page').innerHTML = `
     <section class='create-transaction'>
       <form onSubmit="createTransaction(event)" class="form-control-sm">
@@ -10,9 +10,12 @@ function renderTransactionAdd() {
           <label for="nameInput">Name</label>
         </div>
 
-        <div class="form-floating mb-3">
-          <input type="number" class="form-control" id="amountInput" placeholder="Transaction Amount" name="amount">
-          <label for="amountInput">Amount</label>
+        <div class="input-group mb-3">
+          ${typeOfTransaction(transactionType)}
+          <div class="form-floating">
+            <input type="number" class="form-control" id="amountInput" placeholder="Transaction Amount" name="amount">
+            <label for="amountInput">Amount</label>
+          </div>
         </div>
 
         <div class="form-floating mb-3">
@@ -29,6 +32,14 @@ function renderTransactionAdd() {
       </form>
     </section>
   `
+}
+
+function typeOfTransaction(type) {
+  if (type == 'income') {
+    return `<span class="input-group-text" class="input-form-symbol" id="input-form-transaciton-income">+</span>`
+  } else if (type == 'expense') {
+    return `<span class="input-group-text" class="input-form-symbol" id="input-form-transaciton-expense">-</span>`
+  }
 }
 
 function createTransaction(event) {
