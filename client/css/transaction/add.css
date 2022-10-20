@@ -11,3 +11,8 @@
 #descriptionInput {
   height: 6.5em;
 }
+
+.input-form-symbol {
+  font-size: 2em;
+  font-weight: 600;
+}
