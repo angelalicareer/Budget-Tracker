@@ -22,8 +22,10 @@ fetch('/api/sessions', {
     state.loggedInUsername = userData.username
     console.log("logged in, loading session data")
 
-    renderNav()
-    renderMobileNavMenu()
+    setTimeout(renderNav(), 200)
+    setTimeout(renderMobileNavMenu(), 200)
+    // renderNav()
+    // renderMobileNavMenu()
 
     let data = `{ "userEmail" : "${userData.email}" }`
 
