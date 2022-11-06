@@ -1,4 +1,5 @@
-
+## About the projects:
+- This project is a team-work project. Budget-Tracker is an application which can maintain users budget by tracking the income/outcome. Once users login, users can review overall balance of the accounts. users can also record the deposite and withdraw money.
 ## Budget Tracker
 - Gitloard:
 Titus
@@ -39,7 +40,7 @@ Project 3 - SEiR 61 (Team Hackathon)
 <img width="577" alt="image" src="https://user-images.githubusercontent.com/110880945/194450228-190d3b1a-08f3-4f2b-8df8-12b98bbed4bc.png">
 <img width="681" alt="image" src="https://user-images.githubusercontent.com/110880945/194450292-6a438dc5-3e7c-48fa-aef0-d37ff8ea7e4c.png">
 
-## listen learnt!
+## lessons learnt!
 - Timing is very important!
 - Need to collaborate task and plan specific!
 - Business logic needs to be nailed down on the first day!
