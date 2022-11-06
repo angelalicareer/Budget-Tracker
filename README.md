@@ -4,8 +4,8 @@
 - Gitloard:
 Titus
 - Team members:
-Kshitiz
-Angela
+Kshitiz, 
+Angela, 
 Kate
 ## :computer: Keeping track of budgets, staying on top of your finances!
 Project 3 - SEiR 61 (Team Hackathon)
